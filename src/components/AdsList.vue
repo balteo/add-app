@@ -17,8 +17,7 @@ export default {
     },
     async created() {
         const response = await fetch('/api/ads');
-        const data = await response.json();
-        this.ads = data;
+        this.ads = await response.json();
     }
 }
 </script>
