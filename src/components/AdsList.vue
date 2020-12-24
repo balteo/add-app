@@ -15,6 +15,15 @@ export default {
             ads: []
         }
     },
+    props: ['filter'],
+    watch: {
+        async filter(newSearchInput: string, oldSearchInput: string) {
+            console.log('watch:newSearchInput: ', newSearchInput);
+            console.log('watch:oldSearchInput: ', oldSearchInput);
+            const response = await fetch('/api/ads?q=' + newSearchInput);
+            this.ads = await response.json();
+        }
+    },
     async created() {
         const response = await fetch('/api/ads');
         this.ads = await response.json();
